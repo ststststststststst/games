@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>络股</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #a1c4fd, #c2e9fb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+min-height: 100vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #333;
+overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .title {
+            font-size: 5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            text-shadow: 3px 3px 0 rgba(255,255,255,0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .parallelogram-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .parallelogram {
+            position: absolute;
+            width: 150px;
+            height: 100px;
+            opacity: 0.7;
+            transform: skew(-20deg);
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: skew(-20deg) translateY(0) rotate(0deg); }
+            100% { transform: skew(-20deg) translateY(-1000px) rotate(720deg); }
+        }
+#back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(52, 152, 219, 0.8);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        #back-to-top:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        #back-to-top::after {
+            content: "↑";
+        }
+
+    </style>
+</head>
+<body>
+    <div class="parallelogram-container" id="shapes"></div>
+    <h1 class="title">络股</h1>
+    <h1>学习专区</h1>
+    <a href="http://47.110.152.31" class="btn">络股OJ</a>
+<br>
+    <a href="https://www.luogu.com.cn/" class="btn">洛谷</a>
+<br>
+    <a href="https://csdn.net/" class="btn">CSDN</a>
+<br>
+    <a href="https://ant-design.antgroup.com/" class="btn">HTML</a>
+<h1>小游戏（请勿上瘾！！！）</h1>
+    <a href="https://game.luogu.xyz/" class="btn">小游戏集合</a>
+    <script>
+        const colors = ['#FF9AA2', '#FFB7B2', '#FFDAC1', '#E2F0CB', '#B5EAD7', '#C7CEEA'];
+        const container = document.getElementById('shapes');
+        
+        for (let i = 0; i < 20; i++) {
+            const shape = document.createElement('div');
+            shape.className = 'parallelogram';
+            shape.style.background = colors[Math.floor(Math.random() * colors.length)];
+            shape.style.left = Math.random() * 100 + '%';
+            shape.style.top = Math.random() * 100 + '%';
+            shape.style.width = Math.random() * 100 + 50 + 'px';
+            shape.style.height = Math.random() * 100 + 50 + 'px';
+            shape.style.animationDuration = Math.random() * 10 + 10 + 's';
+            shape.style.animationDelay = Math.random() * 5 + 's';
+            container.appendChild(shape);
+        }
+    </script>
+<div id="back-to-top"></div>
+    
+    <script>
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
